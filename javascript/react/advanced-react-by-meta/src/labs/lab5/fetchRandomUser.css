@@ -1,0 +1,13 @@
+.randomUser {
+  padding: 5px 50px 0;
+  color: rgb(43, 31, 31);
+}
+
+.randomUser h1 {
+  color: rgb(108, 103, 103);
+  margin-left: -20px;
+
+}
+.randomUser img {
+  border-radius: 5px ;
+}
