@@ -1950,7 +1950,7 @@ Regularization is crucial in logistic regression to prevent overfitting, especia
 
 - **Key Takeaways**:
   - Regularization is essential for logistic regression, especially with many features.
-  - Proper tuning of $$\lambda$$ is crucial for optimal performance.
+  - Proper tuning of $\lambda$ is crucial for optimal performance.
 
 
 <center>The end of this readme</center>
