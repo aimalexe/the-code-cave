@@ -1,0 +1,22 @@
+.container {
+    padding: 20px;
+    background-color: #333333;
+    margin: 30px;
+    border-radius: 20px;
+}
+
+.id {
+    font-size: 12px;
+    color: #666;
+}
+.title {
+    font-size: 24px;
+    color: #000000;
+    font-weight: bold;
+}
+.content {
+    padding-left: 10px;
+    font-size: 18px;
+    color: #c2c2c2;
+}
+
