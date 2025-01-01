@@ -112,6 +112,82 @@ For more details and enrollment information, visit the course page: [DevOps Prer
       - [**Question 3**:](#question-3-1)
       - [**Question 4**:](#question-4-1)
   - [Module 4: Application Basics](#module-4-application-basics)
+    - [4.1 **Introduction**](#41-introduction)
+      - [**What will you learn in this section?**](#what-will-you-learn-in-this-section)
+      - [**Why is this important?**](#why-is-this-important)
+      - [**Types of Programming Languages**](#types-of-programming-languages)
+      - [**What is Bytecode?**](#what-is-bytecode)
+      - [**What are Virtual Machines?**](#what-are-virtual-machines)
+      - [**What are Packages and Dependencies?**](#what-are-packages-and-dependencies)
+      - [**Why Learn This?**](#why-learn-this)
+    - [4.2 **Java - Introduction**](#42-java---introduction)
+      - [**Java Versions**](#java-versions)
+      - [**Installing Java**](#installing-java)
+      - [**What is JDK?**](#what-is-jdk)
+      - [**Components of JDK**](#components-of-jdk)
+      - [**JDK and JRE in the Past vs Now**](#jdk-and-jre-in-the-past-vs-now)
+    - [4.3 Hands-on Lab: Java Introduction](#43-hands-on-lab-java-introduction)
+    - [4.4 **Java - Build \& Packaging**](#44-java---build--packaging)
+      - [**Building a Java Application**](#building-a-java-application)
+      - [**Java Bytecode \& JVM**](#java-bytecode--jvm)
+      - [**Packaging Java Applications**](#packaging-java-applications)
+      - [**Running a JAR File**](#running-a-jar-file)
+      - [**JavaDoc (Documentation Tool)**](#javadoc-documentation-tool)
+      - [**Build Automation with Tools**](#build-automation-with-tools)
+      - [**Example with ANT**](#example-with-ant)
+      - [**Other Build Tools**](#other-build-tools)
+    - [4.5 Hands-on Lab: Java - JARs](#45-hands-on-lab-java---jars)
+    - [4.6 Hands-on Lab: Java - Build \& Packaging](#46-hands-on-lab-java---build--packaging)
+    - [4.7 **NodeJS - Introduction**](#47-nodejs---introduction)
+      - [**What is JavaScript?**](#what-is-javascript)
+      - [**Client-Side Frameworks**](#client-side-frameworks)
+      - [**What is NodeJS?**](#what-is-nodejs)
+      - [**NodeJS Features**](#nodejs-features)
+      - [**Installing NodeJS (Example for CentOS)**](#installing-nodejs-example-for-centos)
+      - [**Running a NodeJS Application**](#running-a-nodejs-application)
+      - [**Purpose in DevOps**](#purpose-in-devops)
+    - [4.8 Hands-on Lab: NodeJS - Introduction](#48-hands-on-lab-nodejs---introduction)
+    - [4.9 **NodeJS - NPM**](#49-nodejs---npm)
+      - [**Why is NPM Important?**](#why-is-npm-important)
+      - [**Using NPM**](#using-npm)
+      - [**Where Are Packages Stored?**](#where-are-packages-stored)
+      - [**Using Packages in Applications**](#using-packages-in-applications)
+      - [**How Node Looks for Packages**](#how-node-looks-for-packages)
+      - [**Types of Modules**](#types-of-modules)
+      - [**Understanding `package.json`**](#understanding-packagejson)
+      - [**Dependency Management**](#dependency-management)
+    - [4.10 Hands-on Lab: Node JS - NPM](#410-hands-on-lab-node-js---npm)
+    - [4.11 **Python - Introduction**](#411-python---introduction)
+      - [**Python Versions**](#python-versions)
+      - [**Installing Python**](#installing-python)
+      - [**Checking Python Installation**](#checking-python-installation)
+      - [**Using the Python Interpreter**](#using-the-python-interpreter)
+      - [**Running a Python Program**](#running-a-python-program)
+    - [4.12 Hands-on Lab: Python - Introduction](#412-hands-on-lab-python---introduction)
+    - [4.13 **Python - PIP**](#413-python---pip)
+      - [**Multiple Versions of PIP**](#multiple-versions-of-pip)
+      - [**Installing Python Packages**](#installing-python-packages)
+      - [**Python Package Installation Paths**](#python-package-installation-paths)
+      - [**Importing Python Packages**](#importing-python-packages)
+      - [**Handling Large Application Dependencies**](#handling-large-application-dependencies)
+      - [**Upgrading and Uninstalling Packages**](#upgrading-and-uninstalling-packages)
+      - [**Other Package Formats**](#other-package-formats)
+    - [4.14 Hands-on Lab: Python - PIP](#414-hands-on-lab-python---pip)
+  - [**Certificate of Completion**](#certificate-of-completion)
+  - [**Next Steps After This Course**](#next-steps-after-this-course)
+    - [**1. Linux Basics**](#1-linux-basics)
+    - [**2. Networking Essentials**](#2-networking-essentials)
+    - [**3. Applications and Programming**](#3-applications-and-programming)
+        - [**a. Python**](#a-python)
+        - [**b. Java**](#b-java)
+        - [**c. Node.js**](#c-nodejs)
+        - [**d. C/C++**](#d-cc)
+        - [**e. C#**](#e-c)
+    - [**4. DevOps Tools and Practices**](#4-devops-tools-and-practices)
+        - [**a. Version Control**](#a-version-control)
+        - [**b. CI/CD Pipelines**](#b-cicd-pipelines)
+        - [**c. Containerization**](#c-containerization)
+        - [**d. Configuration Management**](#d-configuration-management)
 
 ## Module 1: Introduction
 
@@ -1237,3 +1313,612 @@ _What is the role of a DNS server in a network environment?_
 ---
 
 ## Module 4: Application Basics
+### 4.1 **Introduction**  
+
+#### **What will you learn in this section?**  
+- Basics of **application development** for DevOps engineers.  
+- Focus on understanding, not advanced coding.  
+- Learn how to **deploy, build, and troubleshoot** applications.  
+- Ideal for people from **non-development backgrounds**.
+
+#### **Why is this important?**  
+- To understand programming languages like **JavaScript (Node.js)**, **Python**, and **Java**.  
+- To relate concepts when deploying or containerizing applications.  
+
+#### **Types of Programming Languages**  
+1. **Compiled Languages**  
+   - Examples: **Java, C, C++**.  
+   - Steps: Write code → Compile → Execute.  
+   - Platform-specific: Runs only on the system it was compiled for.  
+   - Example in Java:  
+     ```java
+     // Save code as MyClass.java
+     javac MyClass.java // Compiles to MyClass.class
+     java MyClass       // Runs the compiled file
+     ```
+
+2. **Interpreted Languages**  
+   - Example: **Python**.  
+   - Steps: Write code → Run directly with an interpreter.  
+   - Converts code to **bytecode** and runs it on a **virtual machine (VM)**.  
+   - Example in Python:  
+     ```python
+     # Save code as script.py
+     python script.py  # Runs the script
+     ```
+
+#### **What is Bytecode?**  
+- Intermediate form of the program, between human-readable code and machine code.  
+- Helps programs run on different systems without changes.  
+
+#### **What are Virtual Machines?**  
+- Environment to run **bytecode** (not the same as infrastructure VMs).  
+- Example: Python Virtual Machine.  
+
+#### **What are Packages and Dependencies?**  
+- **Packages**: Reusable code created by developers.  
+- Examples:  
+  - `npm` for Node.js.  
+  - `pip` for Python.  
+- Applications need these **dependencies** to work.  
+
+#### **Why Learn This?**  
+- To understand how applications are built, tested, and deployed.  
+- Helps with troubleshooting errors in dependencies.  
+
+### 4.2 **Java - Introduction**
+- A popular programming language for **desktop, mobile, and web applications**.  
+- **Free, open-source**, and supported by a large community.  
+
+#### **Java Versions**  
+- Current version: **13** (as per the lecture).  
+- Many organizations still use **Java 8** due to compatibility and licensing issues.  
+- Java version naming:  
+  - Before Java 9: **1.x** (e.g., Java 1.8 for Java 8).  
+  - From Java 9 onwards: **9, 10, 11, etc.**  
+
+#### **Installing Java**  
+1. **Download** from the Oracle website.  
+2. For **Linux (e.g., CentOS)**:  
+   - Use `wget` to download.  
+   - Extract the build and find binaries in the `bin` folder.  
+3. **Check Java Version**:  
+   ```bash
+   java -version
+   ```
+
+#### **What is JDK?**  
+- **Java Development Kit (JDK)** is a collection of tools for:  
+  - **Developing** applications.  
+  - **Building** and **compiling** code.  
+  - **Running** Java programs.  
+
+#### **Components of JDK**  
+1. **Development tools**:  
+   - **Debugger** (`jdb`): Debugs Java applications.  
+   - **JavaDoc** (`javadoc`): Documents source code.  
+2. **Build tools**:  
+   - **JavaC** (`javac`): Compiles source code.  
+   - **Jar** (`jar`): Archives code and libraries into `.jar` files.  
+3. **Java Runtime Environment (JRE)**:  
+   - Required to **run Java applications** on any system.  
+   - Includes the **Java command-line tool**.  
+
+#### **JDK and JRE in the Past vs Now**  
+- **Before Java 9**:  
+  - JDK and JRE were **separate components**.  
+  - You could install JRE alone to run Java apps.  
+- **From Java 9**:  
+  - Both are packaged together in a single JDK package.
+
+### 4.3 Hands-on Lab: Java Introduction
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned.  [Lab 4.3](https://kodekloud.com/pages/free-labs/devops/java-introduction)
+
+### 4.4 **Java - Build & Packaging**
+
+#### **Building a Java Application**
+- **Build Process Steps**:
+  1. Develop source code.
+  2. Compile code into bytecode using the `javac` command.
+  3. Run the application using the `java` command.  
+
+- **Basic Commands**:
+  - Compile:
+    ```bash
+    javac MyClass.java
+    ```
+  - Run:
+    ```bash
+    java MyClass
+    ```
+
+#### **Java Bytecode & JVM**
+- **Bytecode**: Intermediate code generated by the Java compiler.  
+- **JVM (Java Virtual Machine)**:
+  - Executes bytecode.
+  - Enables Java applications to run on any platform with a JVM.
+
+#### **Packaging Java Applications**
+- Use **JAR (Java Archive)** to package applications.  
+- **WAR (Web Archive)**: Used for web applications.  
+- **Creating a JAR File**:
+  ```bash
+  jar cf MyApp.jar MyClass.class Service1.class Service2.class
+  ```
+- **Manifest File**:
+  - Located at: `META-INF/MANIFEST.MF`.  
+  - Specifies application metadata, including the **Main-Class** (entry point).  
+
+#### **Running a JAR File**
+- Command:
+  ```bash
+  java -jar MyApp.jar
+  ```
+
+#### **JavaDoc (Documentation Tool)**
+- Generates HTML documentation for Java code.  
+- Command:
+  ```bash
+  javadoc MyClass.java
+  ```
+
+#### **Build Automation with Tools**
+- Popular tools: **Maven**, **Gradle**, **ANT**.  
+- Automate tasks like:
+  - Compilation.
+  - Documentation.
+  - Packaging (JAR files).
+
+#### **Example with ANT**
+- **ANT Configuration File** (`build.xml`):  
+  - Written in XML.  
+  - Defines build steps (targets) like:
+    - Compile source code.
+    - Generate documentation.
+    - Create deployable JAR files.
+
+- **Running ANT**:
+  - Execute all steps:
+    ```bash
+    ant
+    ```
+  - Execute specific targets:
+    ```bash
+    ant compile jar
+    ```
+
+#### **Other Build Tools**
+1. **Maven**:
+   - Configuration: `pom.xml`.  
+   - Example Command:
+     ```bash
+     mvn clean install
+     ```
+2. **Gradle**:
+   - Configuration: `build.gradle`.  
+   - Example Command:
+     ```bash
+     gradle build
+     ```
+
+### 4.5 Hands-on Lab: Java - JARs
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned. [Lab 4.5](https://kodekloud.com/pages/free-labs/devops/java-jars)
+
+### 4.6 Hands-on Lab: Java - Build & Packaging
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned. [Lab 4.6](https://kodekloud.com/pages/free-labs/devops/java-build-packaging)
+
+### 4.7 **NodeJS - Introduction**
+#### **What is JavaScript?**
+- **JavaScript** transformed plain-text websites into **interactive and dynamic** ones.  
+- Enabled features like:
+  - Animations.
+  - Games.
+  - Graphs and predictions.
+
+#### **Client-Side Frameworks**  
+- JavaScript powers modern frameworks like:
+  - **jQuery**, **AngularJS**, **ReactJS**, **VueJS**, **EmberJS**, etc.  
+- These frameworks run on **users' systems (browsers)** and handle the front-end.
+
+#### **What is NodeJS?**  
+- NodeJS is a **server-side JavaScript environment**.  
+- Enables the use of **JavaScript on the backend** for tasks like building **web servers**.  
+- Key feature: **Non-blocking I/O model**:
+  - Handles many concurrent connections efficiently.  
+
+#### **NodeJS Features**  
+- **Open-source** and **free**.  
+- Cross-platform: Works on **Windows**, **Linux**, **macOS**, etc.  
+- **Latest version** (as of this recording): **13**.  
+
+#### **Installing NodeJS (Example for CentOS)**  
+1. Add the NodeSource repository:  
+   ```bash
+   curl -sL https://rpm.nodesource.com/setup_13.x | sudo bash -
+   ```
+2. Install NodeJS using `yum`:  
+   ```bash
+   sudo yum install -y nodejs
+   ```
+3. Verify installation:  
+   ```bash
+   node -v
+   ```
+
+#### **Running a NodeJS Application**
+- Example of a NodeJS file:
+  ```javascript
+  console.log("Hello, NodeJS!");
+  ```
+- To execute:  
+  ```bash
+  node filename.js
+  ```
+
+#### **Purpose in DevOps**  
+- **Focus**: Deploying and running NodeJS applications, not coding them.  
+- NodeJS knowledge helps handle backend JavaScript applications in **deployment pipelines**.
+
+### 4.8 Hands-on Lab: NodeJS - Introduction
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned. [Lab 4.7](https://kodekloud.com/pages/free-labs/devops/nodejs-introduction)
+
+### 4.9 **NodeJS - NPM**
+- **NPM**: Node Package Manager, used for managing libraries and dependencies in Node.js.
+- Provides access to a vast repository of packages at **npmjs.com**.
+- Automatically installed with Node.js.
+
+#### **Why is NPM Important?**
+- Handles **dependencies** required by applications.
+- Resolves issues like missing libraries or mismatching versions.
+- Enables sharing and using reusable packages across projects.
+
+#### **Using NPM**
+- Check NPM version:
+  ```bash
+  npm -v
+  ```
+- Search for a package:
+  ```bash
+  npm search <package_name>
+  ```
+- Install a package locally (for the current project):
+  ```bash
+  npm install <package_name>
+  ```
+- Install a package globally (available system-wide):
+  ```bash
+  npm install -g <package_name>
+  ```
+
+#### **Where Are Packages Stored?**
+- Installed packages are stored in a directory named `node_modules` in the working directory.
+- Each package includes files like:
+  - **License file**.
+  - **README file**.
+  - **package.json**: Contains metadata (e.g., name, version, author, dependencies).
+
+#### **Using Packages in Applications**
+- Import packages into your application using:
+  ```javascript
+  const packageName = require('<package_name>');
+  ```
+
+#### **How Node Looks for Packages**
+- Node first checks the local `node_modules` directory.
+- If not found, it looks in global paths.  
+- View module search paths:
+  ```bash
+  node -p "module.paths"
+  ```
+
+#### **Types of Modules**
+1. **Built-in Modules**:
+   - Pre-installed with Node.js.
+   - Examples:
+     - `fs`: Handles file systems.
+     - `http`: Hosts HTTP servers.
+     - `os`: Works with operating systems.
+   - Located at `/usr/lib/node_modules` (Linux).
+
+2. **External Modules**:
+   - Installed using NPM.
+   - Examples:
+     - `express`: Web framework for backend applications.
+     - `react`: Frontend user interface library.
+     - `debug`: Debugging tool.
+
+#### **Understanding `package.json`**
+- **package.json** is created at the root of a Node.js project.
+- Contains:
+  - **Metadata**: Name, version, author, etc.
+  - **Dependencies**: Required packages with their versions.
+  - **Scripts**: Commands to automate tasks.
+- Example:
+  ```json
+  {
+    "name": "my-app",
+    "version": "1.0.0",
+    "dependencies": {
+      "express": "^4.17.1",
+      "debug": "^4.3.4"
+    }
+  }
+  ```
+
+#### **Dependency Management**
+- Application dependencies are listed in its `package.json`.
+- Each dependency may have its own `package.json` with sub-dependencies.
+- Ensure versions are compatible to avoid errors.
+
+### 4.10 Hands-on Lab: Node JS - NPM
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned. [Lab 4.10](https://kodekloud.com/pages/free-labs/devops/node-js-npm)
+
+### 4.11 **Python - Introduction**
+- Python is a **free and open-source**, cross-platform programming language.
+- Requires the **Python interpreter** to run applications.
+- Commonly used for **machine learning**, **data science**, **artificial intelligence**, and general-purpose programming.
+
+#### **Python Versions**
+1. **Python 2**:
+   - Released in 2000.
+   - Development ended in 2010.
+   - No backward compatibility with Python 3.
+   - Applications developed in Python 2 must run on a Python 2 interpreter.
+
+2. **Python 3**:
+   - Released in 2008 and actively developed.
+   - Introduced new features to support **modern technologies**.
+   - Applications developed in Python 3 must run on a Python 3 interpreter.
+
+#### **Installing Python**
+- Download the Python installer for your OS from [python.org/downloads](https://python.org/downloads).
+- On Linux (CentOS), install Python using:
+  - Python 2:
+    ```bash
+    sudo yum install python2
+    ```
+  - Python 3.6:
+    ```bash
+    sudo yum install python36
+    ```
+- You can install both versions simultaneously on the same system.
+
+#### **Checking Python Installation**
+- Verify installation:
+  ```bash
+  python2 -V
+  python3 -V
+  ```
+- Alternatively:
+  ```bash
+  python -V
+  ```
+  - This defaults to the version that was installed first (could be Python 2 or Python 3).
+
+#### **Using the Python Interpreter**
+- Invoke Python 2 interpreter:
+  ```bash
+  python2
+  ```
+- Invoke Python 3 interpreter:
+  ```bash
+  python3
+  ```
+- Exit the interpreter:
+  ```bash
+  exit()
+  ```
+
+#### **Running a Python Program**
+- Write a simple program (`hello.py`):
+  ```python
+  print("Hello, Python!")
+  ```
+- Run the program:
+  ```bash
+  python3 hello.py
+  ```
+
+### 4.12 Hands-on Lab: Python - Introduction
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned. [Lab 4.12](https://kodekloud.com/pages/free-labs/devops/python-introduction)
+
+
+### 4.13 **Python - PIP**
+- **PIP** stands for **Python Package Installer**.
+- It is used to install and manage **Python packages**.
+- Installed automatically with Python.
+
+#### **Multiple Versions of PIP**
+- For Python 2: `pip2`
+- For Python 3: `pip3`
+- Run the following command to verify PIP and its associated Python version:
+  ```bash
+  pip -V
+  ```
+- If only `pip` is available, use `pip -V` to check which Python version it corresponds to.
+
+#### **Installing Python Packages**
+- To install a package:
+  ```bash
+  pip install <package_name>
+  ```
+  Example: Installing Flask:
+  ```bash
+  pip install flask
+  ```
+
+#### **Python Package Installation Paths**
+- Installed packages are placed in:
+  - **For Python 2**: `/usr/lib/python2.7/site-packages/`
+  - **For Python 3**: `/usr/lib/python3.6/site-packages/`
+- To locate a specific package:
+  ```bash
+  pip show <package_name>
+  ```
+
+#### **Importing Python Packages**
+- Use the `import` statement in your code:
+  ```python
+  import flask
+  ```
+
+- Python looks for packages in directories listed in the `sys.path`. Use the following command to display these directories:
+  ```python
+  import sys
+  print(sys.path)
+  ```
+
+#### **Handling Large Application Dependencies**
+1. **Using `requirements.txt`:**
+   - Create a `requirements.txt` file listing all packages and their versions:
+     ```
+     flask==2.0.3
+     numpy==1.21.2
+     pandas==1.3.3
+     ```
+   - Install all packages at once:
+     ```bash
+     pip install -r requirements.txt
+     ```
+
+2. **Best Practices:**
+   - Always specify package versions to avoid compatibility issues.
+   - Update the `requirements.txt` file whenever new dependencies are added.
+
+#### **Upgrading and Uninstalling Packages**
+- **Upgrade a package:**
+  ```bash
+  pip install --upgrade <package_name>
+  ```
+- **Uninstall a package:**
+  ```bash
+  pip uninstall <package_name>
+  ```
+
+#### **Other Package Formats**
+1. **EGGs:**
+   - A legacy format for packaging Python code.
+   - Managed using `easy_install`.
+   - EGG files can be placed in a directory where Python looks for packages.
+
+2. **Wheels (WHL):**
+   - A modern packaging format.
+   - Must be unpacked before installing.
+   - Install a wheel package:
+     ```bash
+     pip install <package_name>.whl
+     ```
+
+### 4.14 Hands-on Lab: Python - PIP
+Use the link provided to access the lab and delve into the hands-on practice of the topic you just learned.  [Lab 4.14](https://kodekloud.com/pages/free-labs/devops/python-pip)
+
+## **Certificate of Completion**
+To access my certificate, follow this link to my Coursera account:
+[My Certificate on Coursera](https://coursera.org/share/9078bde39634f2c24f3c997635c4d7ba)
+
+
+## **Next Steps After This Course**
+
+### **1. Linux Basics**
+- **Goal**: Strengthen your Linux skills as it's the backbone of most DevOps and cloud tools.
+- **Next Topics to Cover**:
+  - Advanced Linux commands (`grep`, `awk`, `sed`).
+  - Shell scripting for automation.
+  - File system management (permissions, file operations).
+  - Managing services with `systemctl`.
+
+**Resources**:
+- [Linux Command Line Basics (Coursera)](https://www.coursera.org)
+- [KodeKloud's Linux Basics Course](https://kodekloud.com)
+- [Official Documentation](https://www.gnu.org/software/bash/manual/bash.html)
+
+### **2. Networking Essentials**
+- **Goal**: Build foundational knowledge of networking concepts crucial for DevOps environments.
+- **Next Topics to Cover**:
+  - Advanced IP addressing (subnetting, CIDR).
+  - Protocols (HTTP, HTTPS, DNS, TCP/IP, SSH).
+  - Network troubleshooting tools (`ping`, `traceroute`, `netstat`, `tcpdump`).
+  - Configuring DNS servers and routing tables.
+
+**Resources**:
+- [Computer Networking: Principles, Protocols, and Practice](https://inl.info.ucl.ac.be/CNP3)
+- [Networking for DevOps by KodeKloud](https://kodekloud.com/pages/free-labs/devops/networking-labs)
+- [Official TCP/IP Documentation](https://www.ietf.org/standards/rfcs/)
+
+### **3. Applications and Programming**
+- **Goal**: Learn to work with different programming environments and applications.
+  
+##### **a. Python**
+- Advanced Python scripting (file handling, APIs, automation).
+- Package management with PIP.
+
+**Resources**:
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com)
+- [Official Python Docs](https://docs.python.org/3/)
+- [Python Crash Course (Udemy)](https://www.udemy.com/course/python-crash-course/)
+
+##### **b. Java**
+- Building and running Java applications.
+- Package management with Maven and Gradle.
+
+**Resources**:
+- [Java Programming Masterclass (Udemy)](https://www.udemy.com/course/java-the-complete-java-developer-course/)
+- [Official Java Docs](https://docs.oracle.com/en/java/)
+
+##### **c. Node.js**
+- Building and deploying Node.js applications.
+- Dependency management with NPM.
+
+**Resources**:
+- [Node.js and Express.js Crash Course](https://www.freecodecamp.org)
+- [Official Node.js Docs](https://nodejs.org/en/docs/)
+
+##### **d. C/C++**
+- Understand compiled languages and the role of `gcc` and `g++`.
+- Debugging with `gdb`.
+
+**Resources**:
+- [C Programming for Beginners](https://www.udemy.com/course/c-programming-for-beginners/)
+- [Official C Standard Library Docs](https://en.cppreference.com/w/)
+- [Learn C++ Programming](https://www.learncpp.com/)
+
+##### **e. C#**
+- Basics of .NET framework and Visual Studio.
+- Building desktop and web applications with C#.
+
+**Resources**:
+- [C# Fundamentals for Beginners (Udemy)](https://www.udemy.com/course/csharp-tutorial-for-beginners/)
+- [Official C# Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/)
+
+### **4. DevOps Tools and Practices**
+- **Goal**: Dive deeper into DevOps tools for automation, CI/CD, and containerization.
+
+##### **a. Version Control**
+- Learn Git and GitHub for version control.
+- Collaborate on projects with branching, merging, and pull requests.
+
+**Resources**:
+- [Git Complete (Udemy)](https://www.udemy.com/course/git-complete/)
+- [Official Git Docs](https://git-scm.com/doc)
+
+##### **b. CI/CD Pipelines**
+- Build pipelines with Jenkins, GitLab CI/CD, and GitHub Actions.
+
+**Resources**:
+- [Jenkins Fundamentals (Udemy)](https://www.udemy.com/course/jenkins-fundamentals-for-devops-and-developers/)
+- [Official Jenkins Docs](https://www.jenkins.io/doc/)
+
+##### **c. Containerization**
+- Learn Docker and Kubernetes for containerization and orchestration.
+
+**Resources**:
+- [Docker for DevOps (Udemy)](https://www.udemy.com/course/docker-mastery/)
+- [Official Docker Docs](https://docs.docker.com/)
+- [Official Kubernetes Docs](https://kubernetes.io/docs/home/)
+
+##### **d. Configuration Management**
+- Tools like Ansible and Terraform for infrastructure as code.
+
+**Resources**:
+- [Ansible for Beginners (KodeKloud)](https://kodekloud.com)
+- [Official Terraform Docs](https://developer.hashicorp.com/terraform/docs)
