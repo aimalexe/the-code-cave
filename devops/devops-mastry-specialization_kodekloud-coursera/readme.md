@@ -9,7 +9,7 @@ The **DevOps Mastery Specialization** on Coursera is an 8-course program designe
    - *Rating:* 4.6 (32 ratings)
    - *Overview:* Covers foundational skills like Linux basics, VirtualBox setup, and common applications such as Java, Python, and NodeJS.
 
-2. **Git Basics for DevOps**
+2. [**Git Basics for DevOps**](./2_git-basics-for-devops/readme.md)
    - *Instructor:* [Lydia Halie](https://www.coursera.org/instructor/~150727055)
    - *Duration:* 4 hours
    - *Overview:* Introduces version control using Git, essential for tracking code changes.
