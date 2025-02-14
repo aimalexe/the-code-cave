@@ -14,12 +14,12 @@ The **DevOps Mastery Specialization** on Coursera is an 8-course program designe
    - *Duration:* 4 hours
    - *Overview:* Introduces version control using Git, essential for tracking code changes.
 
-3. **Jenkins for Beginners**
-   - *Instructor:* [Michael Levan](https://www.coursera.org/instructor/~622)
+3. [**Jenkins for Beginners**](./3_jenkins-for-beginners/readme.md)
+   - *Instructor:* [Michael Levan](https://www.coursera.org/instructor/~156404805)
    - *Duration:* 4 hours
    - *Overview:* Teaches continuous integration and delivery using Jenkins.
 
-4. **Docker Basics for DevOps**
+4. [**Docker Basics for DevOps**](./4_docker-basics-for-devops/readme.md)
    - *Instructor:* [Mumshad Mannambeth](https://www.coursera.org/instructor/~93669146)
    - *Duration:* 7 hours
    - *Rating:* 4.5 (10 ratings)
