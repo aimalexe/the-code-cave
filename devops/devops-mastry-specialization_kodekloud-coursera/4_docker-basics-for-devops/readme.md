@@ -1270,7 +1270,7 @@ To access my certificate, follow this link to my Coursera account:
 Now that you've completed the **Docker Basics for DevOps** course, here are some **next steps** to deepen your Docker expertise and apply your knowledge in real-world scenarios.  
 
 ### 1️⃣ Master Docker Compose  
-Docker Compose is a tool for defining and managing multi-container applications using a single YAML file.  
+[Docker Compose](./docker-compose.md) is a tool for defining and managing multi-container applications using a single YAML file.  
 - Learn how to **define services, networks, and volumes** in `docker-compose.yml`.  
 - Practice **running multiple containers** (e.g., web app + database).  
 - Recommended learning:  

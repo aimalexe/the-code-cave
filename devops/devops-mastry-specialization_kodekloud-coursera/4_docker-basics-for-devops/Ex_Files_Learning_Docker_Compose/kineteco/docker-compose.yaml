@@ -1,0 +1,44 @@
+# Specifies the Docker Compose version to be used.
+# Version 3.9 supports advanced features such as long syntax for volumes and networks.
+version: '3.9'  
+
+# Defines all the services (containers) in this Docker Compose configuration.
+services:
+
+  # The "scheduler" service
+  scheduler:
+    build: scheduler/.  # Builds the scheduler service from the "scheduler" directory
+    ports:
+      - "81:80"  # Maps port 81 on the host to port 80 inside the container (to avoid conflicts with other services)
+    profiles:
+      - svc_scheduler  # Assigns this service to the "svc_scheduler" profile, enabling selective execution
+
+  # The "storefront" service
+  storefront: 
+    build:
+      context: storefront/.  # Builds the storefront service using the Dockerfile in the "storefront" directory
+      args:
+        - CLOUD_REGION=us-east-1  # Passes "CLOUD_REGION" as a build argument (useful for region-specific builds)
+    environment:
+      - RUNTIME_ENV=dev  # Defines a runtime environment variable for the application (e.g., setting dev mode)
+    ports:
+      - "80:80"  # Maps port 80 on the host to port 80 in the container (default HTTP traffic)
+      - "443:443"  # Maps port 443 on the host to port 443 in the container (HTTPS traffic)
+    depends_on:
+      - database  # Ensures the database service starts before the storefront service
+    profiles:
+      - svc_storefront  # Assigns this service to the "svc_storefront" profile for selective execution
+
+  # The "database" service
+  database:
+    image: mysql:${TAG:-latest}  # Uses the official MySQL image from Docker Hub with version specified or latest(default)
+    env_file:
+      - ./db/mysql_env_vars.env  # Loads environment variables from an external `.env` file (e.g., credentials)
+    volumes:
+      # - ./db/mysql_data:/var/lib/mysql  # (Commented) Bind mount for MySQL data (for persistence)
+      # - ./db/mysql_dump:/docker-entrypoint-initdb.d:ro  # (Commented) Read-only mount for database initialization scripts
+      - kineteco_data:/var/lib/mysql  # Uses a named volume "kineteco_data" for storing MySQL data persistently
+
+# Defines named volumes for persistent storage
+volumes:
+  kineteco_data:  # This named volume will store MySQL data even if the container is restarted
