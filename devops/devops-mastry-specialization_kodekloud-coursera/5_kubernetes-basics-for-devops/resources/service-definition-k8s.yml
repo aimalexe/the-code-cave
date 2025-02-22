@@ -1,0 +1,49 @@
+# API version specifies the Kubernetes API group and version.
+# "v1" is the stable version for managing services.
+apiVersion: v1
+
+# The "kind" field defines the type of Kubernetes resource.
+# A "Service" enables network access to a set of pods.
+kind: Service
+
+# Metadata contains descriptive information about this Service.
+metadata:
+  # Unique name of the Service.
+  name: apache-web-service
+
+  # Labels help categorize and organize resources.
+  labels:
+    app: apache-web
+    tier: frontend
+
+  # Annotations store additional metadata useful for automation or documentation.
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Exposes the Apache Web application outside the cluster."
+
+# Specification for the Service.
+spec:
+  # Defines how the service is exposed.
+  type: NodePort  # Other options: ClusterIP (default), LoadBalancer, ExternalName
+
+  # Ports section defines how traffic is routed.
+  ports:
+    - targetPort: 80  # The port on the pod the service forwards traffic to.
+      port: 80        # The port exposed by the service inside the cluster.
+      nodePort: 30008 # The port accessible externally on each node (range: 30000-32767).
+
+  # Selector specifies the pods this service applies to.
+  selector:
+    app: apache-web
+    tier: frontend
+
+  # Optional: Set session affinity to ensure requests from the same client go to the same pod.
+  sessionAffinity: None  # Options: "ClientIP", "None"
+
+  # Optional: Define an external traffic policy (useful for LoadBalancer or NodePort).
+  externalTrafficPolicy: Cluster  # Options: "Local" (preserves source IP), "Cluster" (default)
+
+  # Optional: Set a timeout for client connections.
+  sessionAffinityConfig:
+    clientIP:
+      timeoutSeconds: 10800  # 3 hours

@@ -1,0 +1,26 @@
+# Defines a standalone Pod for the Result App frontend
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: result-app
+  labels:
+    app: demo-voting-app  # Constant app name
+    tier: frontend
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Frontend service displaying live voting results."
+
+spec:
+  containers:
+    - name: result-app-container  # Descriptive container name
+      image: kodekloud/examplevotingapp_result:v1
+      ports:
+        - containerPort: 80  # Result app listens on port 80
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "1000m"

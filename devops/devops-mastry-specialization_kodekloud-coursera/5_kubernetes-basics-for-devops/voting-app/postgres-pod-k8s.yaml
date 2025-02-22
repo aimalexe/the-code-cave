@@ -1,0 +1,40 @@
+# Defines a standalone Pod for PostgreSQL database
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: postgres
+  labels:
+    app: demo-voting-app  # Constant app name
+    tier: database
+  annotations:
+    createdBy: "DevOps Team"
+    description: "PostgreSQL database storing voting data permanently."
+
+spec:
+  containers:
+    - name: postgres-container  # Descriptive container name
+      image: postgres:latest
+      ports:
+        - containerPort: 5432  # PostgreSQL listens on port 5432
+
+      # Environment variables for database credentials
+      env:
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PASSWORD
+          value: "postgres"
+        - name: POSTGRES_DB
+          value: "votes"
+        - name: POSTGRES_HOST_AUTH_METHOD
+          value: "md5"  # ✅ Forces md5 authentication instead of scram-sha-256
+
+      # Persistent volume to store database data
+      volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+
+  # Defines the volume for storing PostgreSQL data
+  volumes:
+    - name: postgres-storage
+      emptyDir: {}  # Replace with a PersistentVolumeClaim in production

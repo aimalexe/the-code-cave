@@ -1,0 +1,26 @@
+# Service to expose the Voting App (External Access)
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-service
+  labels:
+    app: demo-voting-app
+    tier: frontend
+  annotations:
+    createdBy: "DevOps Team"
+    description: "NodePort service exposing the Voting App for users."
+
+spec:
+  # Selector must match labels (not 'name') from the Voting App Pod
+  selector:
+    app: demo-voting-app
+    tier: frontend
+
+  # Defines how the service is exposed
+  type: NodePort  # Makes the service accessible outside the cluster
+
+  # Defines port mappings
+  ports:
+    - port: 80         # Cluster-wide port
+      targetPort: 80   # Port on the Voting App container
+      nodePort: 30004  # External port (Accessible on Node's IP)

@@ -1,0 +1,79 @@
+# API version specifies the Kubernetes API group and version.
+# "apps/v1" is the stable version for managing ReplicaSets.
+apiVersion: apps/v1
+
+# The "kind" field defines the type of Kubernetes resource.
+# A "ReplicaSet" ensures a specified number of pod replicas are running.
+kind: ReplicaSet
+
+# Metadata contains descriptive information about this ReplicaSet.
+metadata:
+  # Unique name of the ReplicaSet.
+  name: apache-web-replicaset
+
+  # Labels help categorize and organize resources.
+  labels:
+    app: apache-web
+    tier: frontend
+
+  # Annotations store additional metadata useful for automation or documentation.
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Ensures high availability for the Apache web server."
+
+# Specification for the ReplicaSet.
+spec:
+  # The desired number of pod replicas that should always be running.
+  replicas: 3
+
+  # Selector defines which pods this ReplicaSet will manage.
+  selector:
+    matchLabels:
+      app: apache-web  # Only manages pods with this label.
+
+  # The template defines the pods that the ReplicaSet will create.
+  template:
+    metadata:
+      labels:
+        app: apache-web
+        environment: production
+
+    spec:
+      # List of containers that will run inside the pod.
+      containers:
+        - name: apache-web-container  # Name of the container
+          image: httpd:2.4            # Using Apache HTTPD 2.4
+
+          # Define CPU and memory requests/limits to optimize resource usage.
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "1000m"
+
+          # Define ports that the container will expose.
+          ports:
+            - containerPort: 80  # The container listens on port 80
+
+          # Define environment variables for application configuration.
+          env:
+            - name: SERVER_NAME
+              value: "myapache.local"
+            - name: LOG_LEVEL
+              value: "warn"
+
+          # Define volume mounts for persistent storage.
+          volumeMounts:
+            - name: apache-web-storage
+              mountPath: /usr/local/apache2/htdocs
+
+      # Define persistent volumes for the application.
+      volumes:
+        - name: apache-web-storage
+          persistentVolumeClaim:
+            claimName: apache-web-pvc  # Reference to a PersistentVolumeClaim
+
+      # Restart policy for containers (applies to individual pods, not the whole ReplicaSet).
+      restartPolicy: Always  # Other options: OnFailure, Never

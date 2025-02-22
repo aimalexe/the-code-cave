@@ -1,0 +1,147 @@
+# 📌 PostgreSQL Deployment (Database)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deploy
+  labels:
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      tier: database
+  template:
+    metadata:
+      labels:
+        app: demo-voting-app
+        tier: database
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_DB
+              value: "votes"
+            - name: POSTGRES_HOST_AUTH_METHOD
+              value: "md5"
+
+# 📌 Redis Deployment (In-memory Caching)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deploy
+  labels:
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      tier: cache
+  template:
+    metadata:
+      labels:
+        app: demo-voting-app
+        tier: cache
+    spec:
+      containers:
+        - name: redis
+          image: redis:latest
+          ports:
+            - containerPort: 6379
+
+# 📌 Result App Deployment (Shows Voting Results)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result-app-deploy
+  labels:
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: demo-voting-app
+        tier: frontend
+    spec:
+      containers:
+        - name: result-app
+          image: kodekloud/examplevotingapp_result:v1
+          ports:
+            - containerPort: 80
+
+# 📌 Voting App Deployment (Frontend for Voting)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voting-app-deploy
+  labels:
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: demo-voting-app
+        tier: frontend
+    spec:
+      containers:
+        - name: voting-app
+          image: kodekloud/examplevotingapp_vote:v1
+          ports:
+            - containerPort: 80
+
+# 📌 Worker Deployment (Processes Votes)
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-app-deploy
+  labels:
+    app: demo-voting-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-voting-app
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: demo-voting-app
+        tier: backend
+    spec:
+      containers:
+        - name: worker-app
+          image: kodekloud/examplevotingapp_worker:v1
+          env:
+            - name: REDIS_HOST
+              value: "redis-service"
+            - name: POSTGRES_HOST
+              value: "postgres-service"
+            - name: POSTGRES_USER
+              value: "postgres"
+            - name: POSTGRES_PASSWORD
+              value: "postgres"
+            - name: POSTGRES_DB
+              value: "votes"

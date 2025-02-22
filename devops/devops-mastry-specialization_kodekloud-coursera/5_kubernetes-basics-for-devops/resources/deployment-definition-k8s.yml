@@ -1,0 +1,55 @@
+# API version specifies the Kubernetes API group and version.
+# "apps/v1" is the stable version for managing Deployments.
+apiVersion: apps/v1
+
+# The "kind" field defines the type of Kubernetes resource.
+# A "Deployment" manages ReplicaSets and provides rolling updates.
+kind: Deployment
+
+# Metadata contains descriptive information about this Deployment.
+metadata:
+  # Unique name of the Deployment.
+  name: apache-web-deployment
+
+  # Labels help categorize and organize resources.
+  labels:
+    app: apache-web
+    tier: frontend
+
+  # Annotations store additional metadata useful for automation or documentation.
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Ensures high availability and rolling updates for Apache web server."
+
+# Specification for the Deployment.
+spec:
+  # The desired number of pod replicas that should always be running.
+  replicas: 3
+
+  # Strategy defines how updates should be rolled out.
+  strategy:
+    type: RollingUpdate  # Other option: Recreate
+    rollingUpdate:
+      maxSurge: 1        # Allows one extra pod to start before terminating an old one
+      maxUnavailable: 1  # Ensures at least two pods are always available
+
+  # Selector defines which pods this Deployment will manage.
+  selector:
+    matchLabels:
+      app: apache-web  # Only manages pods with this label.
+
+  # The template defines the pods that the Deployment will create.
+  template:
+    metadata:
+      labels:
+        app: apache-web
+        tier: frontend
+
+    spec:
+      # List of containers that will run inside the pod.
+      containers:
+        - name: apache-web-container  # Name of the container
+          image: httpd            # Using Apache HTTPD 2.4
+
+      # Restart policy for containers (applies to individual pods, not the whole Deployment).
+      restartPolicy: Always  # Other options: OnFailure, Never

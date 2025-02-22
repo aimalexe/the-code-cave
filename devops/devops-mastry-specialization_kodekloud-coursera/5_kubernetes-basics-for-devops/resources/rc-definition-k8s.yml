@@ -1,0 +1,43 @@
+# API version defines the Kubernetes API group and version being used.
+# "v1" is the stable version for core objects like ReplicationControllers.
+apiVersion: v1
+
+# The "kind" field specifies the type of Kubernetes resource.
+# A "ReplicationController" ensures a specified number of pod replicas are running at all times.
+kind: ReplicationController
+
+# Metadata provides descriptive details about the ReplicationController.
+metadata:
+  # Unique name for this ReplicationController.
+  name: web-app-replicator
+
+  # Labels help identify and organize Kubernetes resources.
+  labels:
+    app: web-app
+    component: frontend
+
+  # Annotations store non-identifying metadata useful for automation or documentation.
+  annotations:
+    createdBy: 'DevOps Team'
+    description: 'Ensures the web app always has the desired number of running instances.'
+
+# Specification for the ReplicationController.
+spec:
+  # The desired number of pod replicas that should always be running.
+  replicas: 3
+
+  # The pod template defines what each replica should look like.
+  template:
+    # Metadata for the pods created by this controller.
+    metadata:
+      name: web-app-pod
+      labels:
+        app: web-app
+        environment: production
+
+    # The pod specification, including container configuration.
+    spec:
+      # List of containers that will run inside the pod.
+      containers:
+        - name: web-app-container # Container name
+          image: nginx:stable # The container image (using a specific version for stability)

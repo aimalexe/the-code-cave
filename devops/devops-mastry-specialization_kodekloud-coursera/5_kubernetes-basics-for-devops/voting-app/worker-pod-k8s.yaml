@@ -1,0 +1,17 @@
+# Defines a standalone Pod for the Voting App worker
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: voting-worker
+  labels:
+    app: demo-voting-app  # Constant app name
+    tier: backend
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Worker that processes votes and updates the database."
+
+spec:
+  containers:
+    - name: worker-container  # Descriptive container name
+      image: kodekloud/examplevotingapp_worker:v1

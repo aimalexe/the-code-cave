@@ -1,0 +1,22 @@
+# Service for PostgreSQL database (Internal)
+apiVersion: v1
+kind: Service
+metadata:
+  name: db  # used in the app as db
+  labels:
+    app: demo-voting-app
+    tier: database
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Internal service exposing PostgreSQL database."
+
+spec:
+  # Selector must match labels (not 'name') from the Postgres Pod
+  selector:
+    app: demo-voting-app
+    tier: database
+
+  # Defines port mapping for PostgreSQL
+  ports:
+    - port: 5432        # Service's internal port
+      targetPort: 5432  # Port on the PostgreSQL container

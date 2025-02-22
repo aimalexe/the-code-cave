@@ -1,0 +1,26 @@
+# Defines a standalone Pod for the Redis in-memory database
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: redis
+  labels:
+    app: demo-voting-app  # Constant app name
+    tier: database
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Redis caching system storing temporary votes."
+
+spec:
+  containers:
+    - name: redis-container  # Descriptive container name
+      image: redis:latest
+      ports:
+        - containerPort: 6379  # Redis listens on port 6379
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "1000m"

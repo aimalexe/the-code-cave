@@ -1,0 +1,22 @@
+# Service for Redis database (Internal)
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service  # Renamed for clarity
+  labels:
+    app: demo-voting-app
+    tier: database
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Internal service exposing Redis cache for fast storage."
+
+spec:
+  # Selector must match labels (not 'name') from the Redis Pod
+  selector:
+    app: demo-voting-app
+    tier: database
+
+  # Defines port mapping for Redis
+  ports:
+    - port: 6379        # Service's internal port
+      targetPort: 6379  # Port on the Redis container

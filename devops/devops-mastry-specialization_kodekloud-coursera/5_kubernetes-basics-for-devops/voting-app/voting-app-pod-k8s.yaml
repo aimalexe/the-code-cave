@@ -1,0 +1,26 @@
+# Defines a standalone Pod for the Voting App frontend
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: voting-app
+  labels:
+    app: demo-voting-app  # Constant app name across all services
+    tier: frontend
+  annotations:
+    createdBy: "DevOps Team"
+    description: "Frontend service where users cast their votes."
+
+spec:
+  containers:
+    - name: voting-app-container  # Descriptive container name
+      image: kodekloud/examplevotingapp_vote:v1
+      ports:
+        - containerPort: 80  # Voting app listens on port 80
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "250m"
+        limits:
+          memory: "512Mi"
+          cpu: "1000m"

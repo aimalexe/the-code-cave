@@ -1,0 +1,60 @@
+# The API version specifies the Kubernetes API group and version being used.
+# "v1" is the stable API version for core resources like Pods, Services, etc.
+apiVersion: v1
+
+# The kind of Kubernetes resource this file defines.
+# In this case, it's a "Pod" which represents a single instance of a running container.
+kind: Pod
+
+# Metadata contains descriptive details about the resource, such as its name, labels, and annotations.
+metadata:
+  # The name of the pod. It should be unique within the namespace.
+  name: my-web-app-pod
+
+  # Labels are key-value pairs used for identification, filtering, and grouping of resources.
+  labels:
+    app: web-frontend # Label to identify the application this pod belongs to
+    environment: staging # Label indicating the deployment environment
+
+  # Annotations are key-value pairs that store additional information not used for selection.
+  annotations:
+    description: 'This is a web application running Nginx.'
+
+# The specification of the pod, defining the containers it runs and other configurations.
+spec:
+  # The list of containers running inside the pod.
+  containers:
+    - name: nginx-container # The name of the container (must be unique within the pod)
+      image: nginx:latest # The Docker image to use for this container
+
+      # Resources define the CPU and memory limits for the container.
+      resources:
+        requests:
+          memory: '64Mi' # Minimum memory required to run the container
+          cpu: '250m' # Minimum CPU required (250 millicores = 0.25 CPU)
+        limits:
+          memory: '256Mi' # Maximum memory the container can use
+          cpu: '500m' # Maximum CPU (500 millicores = 0.5 CPU)
+
+      # Ports define the network ports the container will expose.
+      ports:
+        - containerPort: 80 # Exposes port 80 inside the container
+
+      # Environment variables to pass configuration settings into the container.
+      env:
+        - name: APP_ENV
+          value: 'staging'
+        - name: APP_DEBUG
+          value: 'false'
+
+      # Mounting a volume to store data persistently inside the container.
+      volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+
+  # Volumes provide persistent storage to the container.
+  volumes:
+    - name: nginx-config
+      configMap:
+        name: nginx-config-map # Reference to a ConfigMap containing configuration settings.

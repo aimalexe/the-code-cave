@@ -25,7 +25,7 @@ The **DevOps Mastery Specialization** on Coursera is an 8-course program designe
    - *Rating:* 4.5 (10 ratings)
    - *Overview:* Covers containerization concepts with Docker.
 
-5. **Kubernetes Basics for DevOps**
+5. [**Kubernetes Basics for DevOps**](./5_kubernetes-basics-for-devops/readme.md)
    - *Instructor:* [Mumshad Mannambeth](https://www.coursera.org/instructor/~93669146)
    - *Duration:* 8 hours
    - *Overview:* Focuses on container orchestration using Kubernetes.
