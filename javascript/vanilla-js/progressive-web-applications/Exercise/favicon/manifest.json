@@ -1,0 +1,41 @@
+{
+  "name": "NCC Computer Science",
+  "short_name": "NCC CS",
+  "description": "NCC Computer Science Progressive Web App for students and faculty.",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "./web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "./homepage-wide.png",
+      "sizes": "1920x1080",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/homepage-mobile.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "theme_color": "#264de4",
+  "background_color": "#ffc40d",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "start_url": "../index.html",
+  "display_override": ["window-controls-overlay"]
+}
