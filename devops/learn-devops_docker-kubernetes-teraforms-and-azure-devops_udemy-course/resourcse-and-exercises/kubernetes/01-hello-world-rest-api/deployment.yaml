@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: rest-api
+  name: rest-api
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rest-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: rest-api
+    spec:
+      containers:
+      - image: in28min/hello-world-rest-api:0.0.3:RELEASE
+        imagePullPolicy: IfNotPresent
+        name: hello-world-rest-api
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
