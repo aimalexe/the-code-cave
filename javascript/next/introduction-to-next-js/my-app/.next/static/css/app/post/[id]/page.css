@@ -1,0 +1,26 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./app/post/[id]/styles.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+.styles_container__qzSq_ {
+    padding: 20px;
+    background-color: #333333;
+    margin: 30px;
+    border-radius: 20px;
+}
+
+.styles_id__eePM_ {
+    font-size: 12px;
+    color: #666;
+}
+.styles_title__xI1IS {
+    font-size: 24px;
+    color: #000000;
+    font-weight: bold;
+}
+.styles_content__GK44d {
+    padding-left: 10px;
+    font-size: 18px;
+    color: #c2c2c2;
+}
+
+
